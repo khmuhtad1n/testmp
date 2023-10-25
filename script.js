@@ -88,3 +88,14 @@ function generateInvoice() {
     
     document.getElementById('invoice').style.display = 'block';
 }
+
+function generateInvoice() {
+    ...
+    // Tambahkan kode berikut untuk mengirimkan event ke GA4
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'generate_invoice',
+        'value': finalPayment
+    });
+    ...
+}
