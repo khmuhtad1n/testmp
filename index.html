@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace Sederhana</title>
+    <style>
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <!-- Halaman Utama -->
@@ -15,7 +22,13 @@
     <!-- Halaman Checkout -->
     <div id="checkout" style="display: none;">
         <h2>Halaman Checkout</h2>
-        <button onclick="orderDetail()">Detail Order</button>
+        
+        <!-- Daftar Produk -->
+        <div id="productList">
+            <!-- Produk akan diisi oleh JavaScript -->
+        </div>
+
+        <button onclick="orderDetail()">Lanjut ke Detail Order</button>
     </div>
     
     <!-- Halaman Detail Order -->
