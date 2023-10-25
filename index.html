@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Sederhana</title>
+</head>
+<body>
+    <!-- Halaman Utama -->
+    <div id="home">
+        <h2>Selamat Datang di Marketplace Kami!</h2>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+    
+    <!-- Halaman Checkout -->
+    <div id="checkout" style="display: none;">
+        <h2>Halaman Checkout</h2>
+        <button onclick="orderDetail()">Detail Order</button>
+    </div>
+    
+    <!-- Halaman Detail Order -->
+    <div id="orderDetail" style="display: none;">
+        <h2>Detail Order Anda</h2>
+        <button onclick="generateInvoice()">Buat Invoice</button>
+    </div>
+    
+    <!-- Halaman Invoice -->
+    <div id="invoice" style="display: none;">
+        <h2>Invoice Anda</h2>
+        <p>Nomor Invoice: INV12345</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
