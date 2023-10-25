@@ -22,25 +22,24 @@
     <!-- Halaman Checkout -->
     <div id="checkout" style="display: none;">
         <h2>Halaman Checkout</h2>
-        
-        <!-- Daftar Produk -->
-        <div id="productList">
-            <!-- Produk akan diisi oleh JavaScript -->
-        </div>
-
+        <div id="productList"></div>
         <button onclick="orderDetail()">Lanjut ke Detail Order</button>
     </div>
-    
+
     <!-- Halaman Detail Order -->
     <div id="orderDetail" style="display: none;">
         <h2>Detail Order Anda</h2>
+        <div id="orderDetailsList"></div>
+        <p>Total Pembayaran: IDR <span id="totalPayment">0</span></p>
         <button onclick="generateInvoice()">Buat Invoice</button>
     </div>
-    
+
     <!-- Halaman Invoice -->
     <div id="invoice" style="display: none;">
         <h2>Invoice Anda</h2>
-        <p>Nomor Invoice: INV12345</p>
+        <p>Nomor Invoice: <span id="invoiceNumber">INV12345</span></p>
+        <div id="invoiceDetailsList"></div>
+        <p>Total yang Harus Dibayar: IDR <span id="finalPayment">0</span></p>
     </div>
 
     <script src="script.js"></script>
