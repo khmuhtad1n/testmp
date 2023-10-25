@@ -1,5 +1,5 @@
 let cart = [];
-let uniqueDigits = Math.floor(Math.random() * 899) + 100;
+const uniqueDigits = Math.floor(Math.random() * 899) + 100;
 
 function hideAll() {
     document.getElementById('home').style.display = 'none';
@@ -16,19 +16,21 @@ function checkout() {
 
 function populateProducts() {
     const products = [
-        { name: "Produk Alpha", price: generateRandomProductPrice() },
-        { name: "Produk Beta", price: generateRandomProductPrice() },
-        { name: "Produk Gamma", price: generateRandomProductPrice() }
+        { name: "Produk Alpha", price: 1260000 },
+        { name: "Produk Beta", price: 1250000 },
+        { name: "Produk Gamma", price: 1245000 }
     ];
+    
     const productList = document.getElementById('productList');
-    productList.innerHTML = "";
+    productList.innerHTML = '';
+    
     products.forEach(product => {
         const productDiv = document.createElement('div');
         productDiv.classList.add('product');
         productDiv.innerHTML = `
             <h3>${product.name}</h3>
             <p>Harga: IDR ${product.price.toLocaleString()}</p>
-            <input type="number" value="1" id="quantity-${product.name}"/>
+            <input type="number" value="1" id="quantity-${product.name}" min="1"/>
             <button onclick="addToCart('${product.name}', ${product.price})">Tambah ke Keranjang</button>
         `;
         productList.appendChild(productDiv);
@@ -38,9 +40,9 @@ function populateProducts() {
 function addToCart(productName, productPrice) {
     const quantity = parseInt(document.getElementById(`quantity-${productName}`).value);
 
-    const productInCart = cart.find(product => product.name === productName);
-    if (productInCart) {
-        productInCart.quantity += quantity;
+    const existingProduct = cart.find(item => item.name === productName);
+    if (existingProduct) {
+        existingProduct.quantity += quantity;
     } else {
         cart.push({
             name: productName,
@@ -48,30 +50,45 @@ function addToCart(productName, productPrice) {
             quantity: quantity
         });
     }
-    alert(`${productName} telah ditambahkan ke keranjang.`);
+    alert(`${productName} telah ditambahkan ke keranjang dengan jumlah ${quantity}.`);
 }
 
 function orderDetail() {
     hideAll();
-    const detailsList = document.getElementById('orderDetailsList');
-    detailsList.innerHTML = "";
-
-    let total = 0;
-    cart.forEach(product => {
-        const productTotal = product.price * product.quantity;
-        detailsList.innerHTML += `<p>${product.name} (IDR ${product.price.toLocaleString()} x ${product.quantity}) = IDR ${productTotal.toLocaleString()}</p>`;
-        total += productTotal;
-    });
-
-    document.getElementById('totalPayment').innerText = total.toLocaleString();
+    populateOrderDetails();
     document.getElementById('orderDetail').style.display = 'block';
+}
+
+function populateOrderDetails() {
+    const detailsDiv = document.getElementById('orderDetailsList');
+    detailsDiv.innerHTML = "";
+    
+    let total = 0;
+    cart.forEach(item => {
+        detailsDiv.innerHTML += `<p>${item.name} - IDR ${item.price.toLocaleString()} x ${item.quantity} = IDR ${(item.price * item.quantity).toLocaleString()}</p>`;
+        total += item.price * item.quantity;
+    });
+    
+    document.getElementById('totalPayment').innerText = total.toLocaleString();
 }
 
 function generateInvoice() {
     hideAll();
 
-    const invoiceNumber = `INV${new Date().getTime()}`;
-    document.getElementById('invoiceNumber').innerText = invoiceNumber;
+    const invoiceNum = `INV${new Date().getTime()}`;
+    document.getElementById('invoiceNumber').innerText = invoiceNum;
 
+    let total = 0;
     const invoiceDetailsList = document.getElementById('invoiceDetailsList');
-    invoiceDetailsList.innerHTML =
+    invoiceDetailsList.innerHTML = '';
+    cart.forEach(product => {
+        const productTotal = product.price * product.quantity;
+        invoiceDetailsList.innerHTML += `<p>${product.name} (IDR ${product.price.toLocaleString()} x ${product.quantity}) = IDR ${productTotal.toLocaleString()}</p>`;
+        total += productTotal;
+    });
+
+    const finalPayment = total + uniqueDigits;
+    document.getElementById('finalPayment').innerText = finalPayment.toLocaleString();
+    
+    document.getElementById('invoice').style.display = 'block';
+}
