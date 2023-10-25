@@ -1,58 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KT9849RZ');</script>
-<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEst MP</title>
+    <title>Marketplace Sederhana</title>
     <style>
         .product {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px 0;
+            cursor: pointer;
         }
     </style>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KT9849RZ');</script>
+    <!-- End Google Tag Manager -->
+
 </head>
 <body>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KT9849RZ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- Halaman Utama -->
-<div id="home">
-    <h2>test mp</h2>
-    <button onclick="checkout()">Checkout</button>
-</div>
 
-<!-- Halaman Checkout -->
-<div id="checkout" style="display: none;">
-    <h2>Halaman Checkout</h2>
-    <div id="productList"></div>
-    <button onclick="orderDetail()">Lanjut ke Detail Order</button>
-</div>
+<div class="product" data-name="Produk A" data-price="124000" onclick="selectProduct(this)">Produk A - Rp124,000</div>
+<div class="product" data-name="Produk B" data-price="634500" onclick="selectProduct(this)">Produk B - Rp634,500</div>
+<div class="product" data-name="Produk C" data-price="1150500" onclick="selectProduct(this)">Produk C - Rp1,150,500</div>
+<button onclick="checkout()">Checkout</button>
 
-<!-- Halaman Detail Order -->
-<div id="orderDetail" style="display: none;">
-    <h2>Detail Order Anda</h2>
-    <div id="orderDetailsList"></div>
-    <p>Total Pembayaran: IDR <span id="totalPayment">0</span></p>
-    <button onclick="generateInvoice()">Buat Invoice</button>
-</div>
-
-<!-- Halaman Invoice -->
-<div id="invoice" style="display: none;">
-    <h2>Invoice Anda</h2>
-    <p>Untuk pembayaran, silahkan transfer ke:</p>
-    <p>Nomor Invoice: <span id="invoiceNumber">INV12345</span></p>
-    <p>Total yang Harus Dibayar: IDR <span id="finalPayment">0</span></p>
-    <p>* Harap melunasi dalam 24 jam</p>
-</div>
+<div id="orderDetails"></div>
+<div id="invoiceDetails"></div>
 
 <script src="script.js"></script>
 </body>
