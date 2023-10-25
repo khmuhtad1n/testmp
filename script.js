@@ -79,12 +79,8 @@ function generateInvoice() {
     document.getElementById('invoiceNumber').innerText = invoiceNum;
 
     let total = 0;
-    const invoiceDetailsList = document.getElementById('invoiceDetailsList');
-    invoiceDetailsList.innerHTML = '';
     cart.forEach(product => {
-        const productTotal = product.price * product.quantity;
-        invoiceDetailsList.innerHTML += `<p>${product.name} (IDR ${product.price.toLocaleString()} x ${product.quantity}) = IDR ${productTotal.toLocaleString()}</p>`;
-        total += productTotal;
+        total += product.price * product.quantity;
     });
 
     const finalPayment = total + uniqueDigits;
